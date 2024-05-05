@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOTIT</title>
+    <link rel="stylesheet" href="style.css" />
+    <base href="http://localhost/GOTIT/" />
+</head>
+
+
+<body>
+
+<header>
+        <a href="#"><img src="./image/logo.png" alt="Logo" class="logo"></a>
+            <nav class="navigation">
+            <a href="./index.html">Accueil</a>²
+            <a href="navigation/map/leaflet.php">Map</a>
+            <a href="./navigation/repertoire/repertoire.php">Répertoire</a>
+            <a href="./navigation/recherche/rechercheB.html">Recherche</a>
+            <button class="btnLogin-popup">Connexion</button>
+        </nav>
+    </header>
+
+    <div class="wrapper">
+        <span class="icon-close"><ion-icon name="close-outline"></ion-icon></span>
+        <div class="form-box login">
+            <h2>Connexion</h2>
+            <form method="POST" action="./authentification/login.php">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" id="Email_utilisateur" name="Email_utilisateur" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" id="Password_utilisateur" name="Password_utilisateur" required>
+                    <label>Mot de passe</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">Se rappeler de moi</label>
+                    <a href="#"> Mot de passe oublié ?</a>
+                </div>
+                <button type="submit" class="btn">Connexion</button>
+                <div class="login-register">
+                    <p>Vous n'avez pas de compte ? <a href="#" class="register-link"> Inscription</a></p>
+                </div>
+            </form>
+        </div>
+
+        <div class="form-box register">
+            <h2>Inscription</h2>
+            <form method="POST" action="./authentification/inscription.php">
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="person"></ion-icon></span>
+                    <input type="text" id="Identifiant" name="Identifiant" required>
+                    <label>Identifiant</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                    <input type="email" id="Email_utilisateur" name="Email_utilisateur" required>
+                    <label>Email</label>
+                </div>
+                <div class="input-box">
+                    <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                    <input type="password" id="Password_utilisateur" name="Password_utilisateur" required>
+                    <label>Mot de passe</label>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type="checkbox">J'accepte les conditions d'utilisation</label>
+                </div>
+                <button type="submit" class="btn">S'inscrire</button>
+                <div class="login-register">
+                    <p>Vous avez déjà un compte ? <a href="#" class="login-link"> Connexion</a></p>
+                </div>
+            </form>
+
+
+    <script src="script/script.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+   
+
+</body>
+
+</html>
