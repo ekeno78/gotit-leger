@@ -36,7 +36,7 @@ try{
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //echo "connexion réussie ☺";
 
-    $sql = "SELECT IdPoisson, NomPoisson, NomLatinPoisson, DescritptionPoisson FROM poisson";
+    $sql = "SELECT IdPoisson, NomPoisson, NomLatinPoisson, DescriptionPoisson FROM poisson";
     $result = $bdd->query($sql);
 
     echo "<table class='table table-bordered'>";
@@ -52,7 +52,7 @@ try{
         echo "<td>" . $row["IdPoisson"] . "</td>";
         echo "<td>" . $row["NomPoisson"] . "</td>";
         echo "<td>" . $row["NomLatinPoisson"] . "</td>";
-        echo "<td>" . $row["DescritptionPoisson"] . "</td>";
+        echo "<td>" . $row["DescriptionPoisson"] . "</td>";
         echo "</tr>";
     }
 

@@ -8,13 +8,18 @@ try {
     $bdd = new PDO("mysql:host=$servername;dbname=gotit", $username, $password);
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Récupérer les données des lieux depuis la base de données
-    $stmt = $bdd->query("SELECT * FROM lieux");
+    // Récupérer les données des lieux avec les poissons correspondants
+    $stmt = $bdd->query("SELECT lieux.*, GROUP_CONCAT(poisson.NomPoisson SEPARATOR ', ') AS poissons
+                        FROM lieux
+                        LEFT JOIN Contenir ON lieux.Id_lieux = Contenir.Id_lieux
+                        LEFT JOIN poisson ON Contenir.IdPoisson = poisson.IdPoisson
+                        GROUP BY lieux.Id_lieux");
     $lieux = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,13 +35,13 @@ try {
     <style>
         /* Ajouter le style pour le conteneur de la carte */
         #map-container {
-            margin-top: 250px; /* Ajustez la marge en haut pour compenser la hauteur de la barre de navigation */
+            margin-top: 160px; /* Ajustez la marge en haut pour compenser la hauteur de la barre de navigation */
             height: calc(100vh - 250px); /* Utilisation de calc pour ajuster la hauteur de la carte en fonction de la hauteur de la fenêtre du navigateur */
             filter: hue-rotate(0deg); /* Transformer la couleur de la mer en rose */
         }
 
         #map {
-            height: 100%;
+            height: 150%;
             width: 100%;
             border: 2px solid #ccc; /* Ajoutez une bordure pour plus de clarté */
             border-radius: 10px; /* Ajoutez un peu de style à la bordure */
@@ -82,7 +87,7 @@ try {
                 iconAnchor: [15, 30], // Point d'ancrage de l'icône
                 popupAnchor: [0, -30] // Point d'ancrage du popup
             })
-        }).addTo(map).bindPopup("<b><?= $lieu['nom'] ?></b><br>Latitude: <?= $lieu['latitude'] ?><br>Longitude: <?= $lieu['longitude'] ?>");
+        }).addTo(map).bindPopup("<b><?= $lieu['nom'] ?></b><br>Poissons: <?= $lieu['poissons'] ?>");
     <?php endforeach; ?>
 
     // Centrer la carte et la placer en bas de la page

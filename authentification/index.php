@@ -1,26 +1,20 @@
 <?php
 
-$servername = "172.16.196.254";
-$username = "eva";
-$password = "eva";
+// Définition des paramètres de connexion à la base de données
+$servername = "172.16.196.254"; // Adresse du serveur de la base de données
+$username = "eva"; // Nom d'utilisateur pour se connecter à la base de données
+$password = "eva"; // Mot de passe pour se connecter à la base de données
 
-try{
-    $bdd = new PDO("mysql:host=$servername; dbname=gotit", $username,$password);
+try {
+    // Création d'une nouvelle instance de l'objet PDO pour se connecter à la base de données
+    $bdd = new PDO("mysql:host=$servername;dbname=gotit", $username, $password);
+
+    // Configuration de l'attribut PDO pour lever des exceptions en cas d'erreurs
     $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "connexion réussie ☺";
 
+   
+} catch (PDOException $e) {
+    // Capture et affichage des erreurs de connexion à la base de données
+    echo "Erreur : " . $e->getMessage();
 }
-catch(PDOException $e){
-    echo "Erreur  : ".$e->getMessage();
-}
-
-// test BDD insertion de données
-//$bdd->exec("INSERT INTO utilisateurs (Identifiant, Email_utilisateur, Password_utilisateur) VALUES ('eva', 'eva@hotmail.com', 'eva')");
-
-
-// URL API POISSON ET LIEU 
-// 'https://hubeau.brgm-rec.fr/api/v1/etat_pisticole/observations?size=20'
-
-
 ?>
-
